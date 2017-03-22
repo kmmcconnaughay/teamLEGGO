@@ -29,6 +29,20 @@ def get_square(array, row, col, size):
     return pixels
 
 
+def average_square(pixels):
+    red = pixels[:, :, 0]
+    green = pixels[:, :, 1]
+    blue = pixels[:, :, 2]
+
+    avg_r = sum(sum(red))/red.shape[0]**2
+    avg_g = sum(sum(green))/green.shape[0]**2
+    avg_b = sum(sum(blue))/blue.shape[0]**2
+
+    # print(pixels)
+
+    return [avg_r, avg_g, avg_b]
+
+
 if __name__ == "__main__":
     x = load_img('wallaby.jpg')
     # plt.imshow(x)
@@ -41,4 +55,9 @@ if __name__ == "__main__":
     numcols = math.floor(width/squaresize)
     numrows = math.floor(height/squaresize)
     super_square1 = get_square(x, 1, 1, squaresize)
-    print(super_square1.shape)
+
+    superpixel1 = average_square(super_square1)
+
+    plt.imshow(superpixel1)
+    plt.show()
+    print(average_square(super_square1))
