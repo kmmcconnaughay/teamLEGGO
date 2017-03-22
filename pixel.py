@@ -42,6 +42,19 @@ def average_square(pixels):
     return [avg_r, avg_g, avg_b]
 
 
+def get_pixel(super_square):
+    values = average_square(super_square)
+    red_val = values[0]
+    green_val = values[1]
+    blue_val = values[2]
+
+    red_matrix = red_val * np.ones((25, 25))
+    green_matrix = green_val * np.ones((25, 25))
+    blue_matrix = blue_val * np.ones((25, 25))
+    final = np.dstack((red_matrix, green_matrix, blue_matrix))
+    return final
+
+
 if __name__ == "__main__":
     x = load_img('wallaby.jpg')
     # plt.imshow(x)
@@ -53,7 +66,9 @@ if __name__ == "__main__":
     squaresize = 25  # side length of superpixel
     numcols = math.floor(width/squaresize)
     numrows = math.floor(height/squaresize)
-    super_square1 = get_square(x, 18, 18, squaresize)
+    super_square1 = get_square(x, 1, 1, squaresize)
 
     superpixel1 = average_square(super_square1)
     print(average_square(super_square1))
+    plt.imshow(get_pixel(super_square1))
+    plt.show()
