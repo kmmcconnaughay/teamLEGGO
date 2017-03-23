@@ -112,6 +112,14 @@ def pixelate_dat_ish(file_name, pixel_size):
     return pixelated
 
 
+def custom_color(red_val, green_val, blue_val):
+    red_matrix = red_val * np.ones((25, 25))
+    green_matrix = green_val * np.ones((25, 25))
+    blue_matrix = blue_val * np.ones((25, 25))
+    final = np.dstack((red_matrix, green_matrix, blue_matrix))
+    return final
+
+
 if __name__ == "__main__":
 
     x = load_img('wallaby.jpg')
