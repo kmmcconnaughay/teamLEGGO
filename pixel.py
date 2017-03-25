@@ -124,8 +124,11 @@ if __name__ == "__main__":
 
     x = load_img('wallaby.jpg')
     plt.imshow(x)
+    plt.axis('off')
     plt.show()
 
     image_pix = pixelate_dat_ish('wallaby.jpg', 25)
     plt.imshow(image_pix)
+    plt.axis('off')
+    plt.savefig("test.png", bbox_inches='tight')
     plt.show()
