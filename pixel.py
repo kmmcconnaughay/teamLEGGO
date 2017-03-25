@@ -121,12 +121,22 @@ def custom_color(red_val, green_val, blue_val):
 
 
 if __name__ == "__main__":
-
+    
     x = load_img('wallaby.jpg')
     plt.imshow(x)
     plt.axis('off')
     plt.show()
+    """
+    x = load_img('wallaby.jpg')
+    super_square1 = get_square(x, 1, 1, 25)
+    superpixel1 = average_square(super_square1)
+    print(average_square(super_square1))
+    plt.imshow(get_pixel(super_square1))
+    # plt.imshow(x)
+    plt.axis('off')
+    plt.show()
 
+    """
     image_pix = pixelate_dat_ish('wallaby.jpg', 25)
     plt.imshow(image_pix)
     plt.axis('off')
