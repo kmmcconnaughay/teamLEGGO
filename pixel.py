@@ -49,9 +49,9 @@ def average_square(pixels):
     num_pix = red.shape[0]**2
 
     # sum color values and divide to get the average value
-    avg_r = np.sum(red)/num_pix
-    avg_g = np.sum(green)/num_pix
-    avg_b = np.sum(blue)/num_pix
+    avg_r = 255 - int(np.sum(red)/num_pix)
+    avg_g = 255 - int(np.sum(green)/num_pix)
+    avg_b = 255 - int(np.sum(blue)/num_pix)
 
     return [avg_r, avg_g, avg_b]
 
