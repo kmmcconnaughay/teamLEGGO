@@ -1,53 +1,40 @@
+Team LEGGO  
+Kerry McConnaughay, Annie Kroo, Ana Krishnan, Anil Patel, Onur Talu  
+Software architecture discussion   
+
 **Agenda:**
-Background
-What we hope to get out of this
-Architectural Discussion
-Key Questions
-Feedback
+Background  
+What we hope to get out of this  
+Architectural Discussion  
+Key Questions  
+Feedback  
+Thank you  
 
-**The Big Idea:** What is the main idea of your project? What topics will you explore and what will you generate? What is your minimum viable product ? What is a stretch goal?
+**What do we hope to get out of this technical discussion?**
 
-We plan to take an image, pixelate it, and then match the colors of the pixels to colors of Legos. We will explore and combine image processing, data mining, UI, and optimization. The program will generate a list of the Lego bricks needed and a representation of the given image in Lego colors. Our minimum viable product will pixelate the image and tell you what Legos to buy. Our stretch goals are to allow for different color filters on the image, to optimize for cost and size of Lego bricks and to make a nice user interface. 
+The focus of our technical discussion will be for us to explain our top-level code organization and decisions-making and receive constructive feedback on how we could approach our challenges differently or more effectively. To expand our horizons, we want to ask our peer teams for ideas of how to take our project further; we still want to use Legos, but we believe there is more potential. We also want to get feedback on approaches we could take that would set us up better for the stretch goals we already have. 
 
-**Learning Goals:** What are your individual learning goals for this project?
+**Background**
 
-**Anil** - processing image data and colors for lego translation.
-**Ana** - To learn how to match the colors in the image to Lego colors, and to get better at scraping data from websites. 
-**Kerry** - Learn how to pixelate, search websites for specific information, and be more comfortable with designing UI
-**Onur** - Getting better at using different libraries/packages and GUI, along with getting more comfortable with OOP.
-**Annie** - To get better at collaborative programing, learn more about creating nice user interfaces, and become comfortable with integrating the different parts of a group program
+This is the type of image we are intending to output when our user inputs a photo.
+We chose to use Numpy and Pillow packages, because Numpy offers a variety of matrix operations that we can employ to work with and create new images - allowing us to do custom pixelation and forming new pixelated images from the original. Pillow - being an imaging library - gives loading and display functionality. We also employed Matplotlib in order to display pixelated images.
 
-**Implementation Plan:** This will probably be pretty vague initially. Perhaps at this early juncture you will have identified a library or a framework that you think will be useful for your project. If you don’t have any idea how you will implement your project, provide a rough plan for how you will determine this information.
-	
-We will be using Pillow as an image processing library and possibly pygame for user interface. For the data mining and user input portions of the project, we will use the skills we have already developed to get information from the Lego project and get the image from the user. There is a list of libraries we will explore for creating user interface. We are planning on working together during the initial phases of the project and then splitting up into topics that interest us as we move forward. 
+We chose Kivy as our GUI because it is more aesthetically pleasing than other GUI’s. Kivy is a graphical user interface that combines many GUI libraries to provide an easy to use, aesthetic, and free user interface that has a multitude of capabilities. It seems straightforward to implement after learning about it, and has a lot of online support. 
 
-**Project schedule:** You have 6 weeks (roughly) to finish the project. Sketch out a rough schedule for completing the project. Depending on your project, you may be able to do this in great specificity or you may only be able to give a broad outline. Additionally, longer projects come with increased uncertainty, and this schedule will likely need to be refined along the way.
+We have already decided on a few stretch goals. The first is giving the user the choice of the size and the number of Lego Bricks they can use to build the image they chose. Another is being able to change the color scheme of the blocks used. For example, one version of the pixelated image would be in the original colors and the next version would recreate the image using shades of blue Legos or grayscaled.
 
-**Week 1** - Planning and coordinating structure
-**Week 2** - Break up into sections and start working on our program
-**Week 3** - Work on sections
-**Week 4** - Finish up code for sections
-**Week 5** - Integrate parts
-**Week 6** - Polish and work on stretch goals
-**Tentative Meeting Times:** Wednesday - 1:00 PM-3:00 PM; Saturday - 10:00AM-12:00PM
+**Architecture**
 
-**Collaboration plan:** How do you plan to collaborate with your teammates on this project? Will you split tasks up, complete them independently, and then integrate? Will you pair program the entire thing? Make sure to articulate your plan for successfully working together as a team. This might also include information about any software development methodologies you plan to use (e.g. agile development). Make sure to make clear why you are choosing this particular organizational structure.
-	
-We have split our project into a series of high-level sections that can be split between people. We will start working as a team and then dividing and organizing roles/tasks as we better understand how the project will be structured.
+We have divided our project into a few different areas of focus as displayed above. Our code will be comprised of four sections each containing one of these areas. The user interface input will interface with the user and give the data from the user to the pixelation portion of our code. This will then pixelate the image and determine how many of each color lego is needed. This information will then be handed off to the HTML Parsing section which will scan the LEGO website and price each of the LEGOs needed to make up the image. The LEGO bricked image created by the pixelation portion will be displayed by the user interface output alongside the price generated by the HTML parser. 
 
-Pixelation, choosing sizes based on cost, user input, output User Interface, and color assignment are sections that we will split among ourselves. 
+**Key Questions Selected**
 
-Some areas we are considering using to divide up the project are as follows:
-Pixelation
-Choosing sizes based on cost
-User input
-Output User Interface
-Color assignment
+What do you want to learn from the review? What are the most important decisions your team is currently 
+How can we make our code object oriented to make it more efficient for future steps?  
+Is there a python library we could use to more efficiently pixelate our images? We are currently using pillow and numpy to perform array operations on the images in loops.  
+We are currently facing problems with displaying our RGB values correctly. Are there any alternatives to matplotlib we can use to avoid this problem?  
+What stretch goals should we gear our code most towards? Similarly, which stretch goal are most interesting?  
+What would you want this program to return if you were our user?  
 
-**Risks:** What do you view as the biggest risks to the success of this project?
 
-Not prioritizing this project over other projects may be risky, as well as not dividing up the work evenly and not sharing expectations for the progress and quality of the project with one another. Different member’s pacing conflicting with other group member’s ability to complete their sections could also pose a problem.
 
-**Additional Course Content:** What are some topics that we might cover in class that you think would be especially helpful for your project?
-
-Going over more examples of user interfacing would be useful because currently, we only have experience using pygame to create the UI.  It would also be helpful to go over data processing and Python and how to parse HTML sites to get information. 
