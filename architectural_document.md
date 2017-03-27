@@ -3,6 +3,7 @@ Kerry McConnaughay, Annie Kroo, Ana Krishnan, Anil Patel, Onur Talu
 Software architecture discussion   
 
 **Agenda:**
+
 Background  
 What we hope to get out of this  
 Architectural Discussion  
