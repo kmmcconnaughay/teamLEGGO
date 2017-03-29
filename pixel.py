@@ -8,6 +8,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 import PIL.Image as Image
 
+legolist = [[10, 23, 89], [168, 25, 40], [55, 200, 20]]
+colorsgray = []
+for color in legolist:
+    r = color[0]
+    g = color[1]
+    b = color[2]
+    gray = int(0.2989*r + 0.5870*g + 0.1140*b)
+    colorsgray.append(gray)
+
 
 def load_img(filename):
     """
@@ -49,11 +58,22 @@ def average_square(pixels):
     num_pix = red.shape[0]**2
 
     # sum color values and divide to get the average value
-    avg_r = 255 - int(np.sum(red)/num_pix)
-    avg_g = 255 - int(np.sum(green)/num_pix)
-    avg_b = 255 - int(np.sum(blue)/num_pix)
+    r = 255 - int(np.sum(red)/num_pix)
+    g = 255 - int(np.sum(green)/num_pix)
+    b = 255 - int(np.sum(blue)/num_pix)
 
-    return [avg_r, avg_g, avg_b]
+    gray = int(0.2989*r + 0.5870*g + 0.1140*b)
+    subtract = []
+    for color in colorsgray:
+        subtracted = math.fabs(color - gray)
+        subtract.append(subtracted)
+    index = subtract.index(min(subtract))
+    lego = legolist[index]
+    r = int(lego[0])
+    b = int(lego[1])
+    g = int(lego[2])
+
+    return [r, g, b]
 
 
 def get_pixel(super_pixel):
@@ -122,22 +142,16 @@ def custom_color(red_val, green_val, blue_val):
 
 if __name__ == "__main__":
 
-    x = load_img('wallaby.jpg')
+    x = load_img('Obama.jpg')
     plt.imshow(x)
     plt.axis('off')
     plt.show()
     """
-    x = load_img('wallaby.jpg')
-    super_square1 = get_square(x, 1, 1, 25)
-    superpixel1 = average_square(super_square1)
-    print(average_square(super_square1))
-    plt.imshow(get_pixel(super_square1))
-    # plt.imshow(x)
-    plt.axis('off')
+    img = custom_color(255, 0, 0)
+    plt.imshow(img)
     plt.show()
-
     """
-    image_pix = pixelate_dat_ish('wallaby.jpg', 25)
+    image_pix = pixelate_dat_ish('Obama.jpg', 25)
     plt.imshow(image_pix)
     plt.axis('off')
     plt.savefig("test.png", bbox_inches='tight')
