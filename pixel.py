@@ -87,12 +87,12 @@ def pixelate_dat_ish(file_name, pixel_size):
 
     array = load_img(file_name)     # create the image array
     size = array.shape              # determine size of the pic
-    height = size[0]                # height of the pic
-    width = size[1]                 # width of the pic
+    height = size[0] - size[0] % pixel_size  # height of the pic
+    width = size[1] - size[1] % pixel_size   # width of the pic
 
     squaresize = pixel_size                    # side length of superpixel
     numcols = math.floor(width/squaresize)     # number of columns rounded down
-    numrows = math.floor(height/squaresize)    # number of rows rounded down
+    numrows = math.floor(height/squaresize)   # number of rows rounded down
 
     # create an empty array to add to
     pixelated = np.empty((height, width, 3))
@@ -121,7 +121,7 @@ def custom_color(red_val, green_val, blue_val):
 
 
 if __name__ == "__main__":
-    
+
     x = load_img('wallaby.jpg')
     plt.imshow(x)
     plt.axis('off')
