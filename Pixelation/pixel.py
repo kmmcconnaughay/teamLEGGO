@@ -7,15 +7,7 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 import PIL.Image as Image
-
-legolist = [[10, 23, 89], [168, 25, 40], [55, 200, 20]]
-colorsgray = []
-for color in legolist:
-    r = color[0]
-    g = color[1]
-    b = color[2]
-    gray = int(0.2989*r + 0.5870*g + 0.1140*b)
-    colorsgray.append(gray)
+# import legolist
 
 
 def load_img(filename):
@@ -44,6 +36,33 @@ def get_square(array, row, col, size):
     return pixels
 
 
+def grayscale_val():
+    """
+    Grayscales the colors of the lego bricks and returns two list of lists, the
+    RGB values of the LEGO bricks and their grayscaled conterparts.
+    """
+    all_values = []
+    for i in range(256):
+        each = [i, i, i]
+        all_values.append(each)
+
+    legolist = all_values
+    """
+    legolist = [[251, 229, 8], [74, 184, 72], [236, 29, 35], [69, 140, 204],
+                [255, 255, 255], [0, 0, 0], [206, 119, 42], [128, 128, 128],
+                [247, 145, 47]]
+                """
+
+    colorsgray = []
+    for color in legolist:
+        r = color[0]
+        g = color[1]
+        b = color[2]
+        gray = int(0.2989*r + 0.5870*g + 0.1140*b)
+        colorsgray.append(gray)
+    return legolist, colorsgray
+
+
 def average_square(pixels):
     """
     Take in a list of pixels and return the average rgb values of the list
@@ -64,6 +83,7 @@ def average_square(pixels):
 
     gray = int(0.2989*r + 0.5870*g + 0.1140*b)
     subtract = []
+    legolist, colorsgray = grayscale_val()
     for color in colorsgray:
         subtracted = math.fabs(color - gray)
         subtract.append(subtracted)
@@ -142,15 +162,11 @@ def custom_color(red_val, green_val, blue_val):
 
 if __name__ == "__main__":
 
-    x = load_img('Obama.jpg')
-    plt.imshow(x)
+    org_image = load_img('Obama.jpg')
+    plt.imshow(org_image)
     plt.axis('off')
     plt.show()
-    """
-    img = custom_color(255, 0, 0)
-    plt.imshow(img)
-    plt.show()
-    """
+
     image_pix = pixelate_dat_ish('Obama.jpg', 25)
     plt.imshow(image_pix)
     plt.axis('off')
