@@ -121,7 +121,7 @@ def custom_color(red_val, green_val, blue_val):
 
 
 if __name__ == "__main__":
-    
+
     x = load_img('wallaby.jpg')
     plt.imshow(x)
     plt.axis('off')
