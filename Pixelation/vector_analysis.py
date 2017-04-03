@@ -54,9 +54,9 @@ def average_square(pixels):
     num_pix = red.shape[0]**2
 
     # sum color values and divide to get the average value
-    r = 255 - int(np.sum(red)/num_pix)
-    g = 255 - int(np.sum(green)/num_pix)
-    b = 255 - int(np.sum(blue)/num_pix)
+    r = int(np.sum(red)/num_pix)
+    g = int(np.sum(green)/num_pix)
+    b = int(np.sum(blue)/num_pix)
 
     min_dist = 100000000
     min_color = 0
@@ -67,7 +67,7 @@ def average_square(pixels):
         color_g = color[1]
         color_b = color[2]
 
-        dist = math.sqrt((r-color_r)**2 + (g - color_g)**2 + (b - color_b)**2)
+        dist = math.sqrt(((r-color_r)*1)**2 + ((g - color_g)*1)**2 + ((b - color_b)*1)**2)
 
         if dist < min_dist:
             min_dist = dist
@@ -77,6 +77,7 @@ def average_square(pixels):
     r = int(lego_color[0])
     b = int(lego_color[1])
     g = int(lego_color[2])
+    print()
     print(r, g, b)
     return [r, g, b]
 
@@ -147,12 +148,13 @@ def custom_color(red_val, green_val, blue_val):
 
 if __name__ == "__main__":
 
-    org_image = load_img('blocks.png')
+    filename = "blocks.png"
+    org_image = load_img(filename)
     plt.imshow(org_image)
     plt.axis('off')
     plt.show()
 
-    image_pix = pixelate_dat_ish('blocks.png', 10)
+    image_pix = pixelate_dat_ish(filename, 5)
     plt.imshow(image_pix)
     plt.axis('off')
     plt.savefig("test.png", bbox_inches='tight')
