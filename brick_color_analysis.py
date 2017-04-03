@@ -18,11 +18,8 @@ def load_image(filenames):
     path = '/home/kerry/teamLEGGO/Pick A Brick_LEGO_All_Bricks'
     for filename in filenames:
         image = Image.open(path + '//' + filename, 'r')
-        # image = Image.open(path + '//Black', 'r')
         image.load()
         width, height = image.size
-        # print(width)
-        # print(height)
 
         data = np.array(image)
         middle_pixel = data[int(height/2), int(0.6 * width)]
