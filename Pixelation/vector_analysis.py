@@ -148,12 +148,14 @@ def custom_color(red_val, green_val, blue_val):
 
 if __name__ == "__main__":
 
+    org_image = load_img('windowslogo.png')
     filename = "blocks.png"
     org_image = load_img(filename)
     plt.imshow(org_image)
     plt.axis('off')
     plt.show()
 
+    image_pix = pixelate_dat_ish('windowslogo.png', 10)
     image_pix = pixelate_dat_ish(filename, 5)
     plt.imshow(image_pix)
     plt.axis('off')
