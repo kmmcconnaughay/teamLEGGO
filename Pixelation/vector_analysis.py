@@ -10,8 +10,8 @@ import PIL.Image as Image
 # import legolist
 
 legolist = [[251, 229, 8], [74, 184, 72], [236, 29, 35], [69, 140, 204],
-            [255, 255, 255], [0, 0, 0], [206, 119, 42], [247, 145, 47],
-            [26, 0, 255], [101, 67, 33]]
+            [0, 0, 0], [206, 119, 42], [247, 145, 47],
+            [26, 0, 255], [101, 67, 33], [255, 185, 2]]
 
 
 def load_img(filename):
@@ -57,6 +57,18 @@ def average_square(pixels):
     r = int(np.sum(red)/num_pix)
     g = int(np.sum(green)/num_pix)
     b = int(np.sum(blue)/num_pix)
+    return [r, g, b]
+
+
+def compare(pixels):
+
+    avg_color = average_square(pixels)
+
+    r = avg_color[0]
+    g = avg_color[1]
+    b = avg_color[2]
+
+    # return [r, g, b]
 
     min_dist = 100000000
     min_color = 0
@@ -74,11 +86,13 @@ def average_square(pixels):
             min_color = i
 
     lego_color = legolist[min_color]
-    r = int(lego_color[0])
-    b = int(lego_color[1])
-    g = int(lego_color[2])
-    print()
-    print(r, g, b)
+
+    r = 255 - int(lego_color[0])
+    g = 255 - int(lego_color[1])
+    b = 255 - int(lego_color[2])
+
+    # print()
+    # print(r, g, b)
     return [r, g, b]
 
 
@@ -106,9 +120,9 @@ def get_pixel(super_pixel):
     return final
 
 
-def pixelate_dat_ish(file_name, pixel_size):
+def lego_dat_ish(file_name, pixel_size):
     """
-    combine all functions into a fully pixelated image
+    combine all functions into a fully lego'd image
     """
 
     array = load_img(file_name)     # create the image array
@@ -126,7 +140,7 @@ def pixelate_dat_ish(file_name, pixel_size):
     for col in range(0, numcols):
         for row in range(0, numrows):
             pixels = get_square(array, col, row, squaresize)
-            super_pixel = get_pixel(pixels)
+            super_pixel = compare(pixels)
 
             firstcol = col*pixel_size
             lastcol = firstcol+pixel_size
@@ -148,16 +162,14 @@ def custom_color(red_val, green_val, blue_val):
 
 if __name__ == "__main__":
 
-    org_image = load_img('windowslogo.png')
-    filename = "blocks.png"
+    filename = "Obama.jpg"
     org_image = load_img(filename)
     plt.imshow(org_image)
     plt.axis('off')
     plt.show()
 
-    image_pix = pixelate_dat_ish('windowslogo.png', 10)
-    image_pix = pixelate_dat_ish(filename, 5)
+    image_pix = lego_dat_ish(filename, 25)
     plt.imshow(image_pix)
     plt.axis('off')
-    plt.savefig("test.png", bbox_inches='tight')
+    plt.savefig("test.png", bbox_inches='tight', origin='lower')
     plt.show()
