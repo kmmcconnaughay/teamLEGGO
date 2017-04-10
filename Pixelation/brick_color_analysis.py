@@ -6,6 +6,7 @@ Author: Kerry McConnaughay
 
 """
 import cv2
+# import subprocess
 import PIL.Image as Image
 import numpy as np
 
@@ -16,9 +17,13 @@ def load_image(filenames):
     """
     brick_pixels = {}
     image_middle_pixels = []
-    path = '/home/onurtalu/Documents/teamLEGGO/Pick A Brick_LEGO_All_Bricks'
+    # subprocess.call('pwd')
+    # newpath = subprocess.call('cd', '..')
+    # print(newpath)
+    localpath = '/home/onurtalu/Documents'
+    path = '/teamLEGGO/Pick A Brick_LEGO_All_Bricks'
     for filename in filenames:
-        image = Image.open(path + '//' + filename, 'r')
+        image = Image.open(localpath + path + '//' + filename, 'r')
         image.load()
         width, height = image.size
 
@@ -38,4 +43,4 @@ if __name__ == '__main__':
                  'Light purple', 'Medium azur', 'Medium blue',
                  'Medium lavendel', 'Medium lilac', 'Medium nougat',
                  'Medium stone grey', 'Reddish brown', 'Sand green']
-    load_image(filenames)
+    list_of_colors = load_image(filenames)

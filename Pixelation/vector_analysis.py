@@ -8,11 +8,24 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 import PIL.Image as Image
+from brick_color_analysis import load_image
 
 """List of lego colors, will be replaced by a dictionary."""
+
+"""
 legolist = [[251, 229, 8], [74, 184, 72], [236, 29, 35], [69, 140, 204],
             [0, 0, 0], [206, 119, 42], [247, 145, 47],
             [26, 0, 255], [101, 67, 33], [255, 185, 2]]
+"""
+filenames = ['Brick yellow', 'Bright blue', 'Bright orange', 'Bright red',
+             'Bright reddish violet', 'Bright yellow',
+             'Bright yellowish green', 'Dark green', 'Dark stone grey',
+             'Light purple', 'Medium azur', 'Medium blue',
+             'Medium lavendel', 'Medium lilac', 'Medium nougat',
+             'Medium stone grey', 'Reddish brown', 'Sand green']
+
+legodict, legolist = load_image(filenames)
+# print(legolist)
 
 
 def load_img(filename):
@@ -171,13 +184,13 @@ def custom_color(red_val, green_val, blue_val):
 
 if __name__ == "__main__":
 
-    filename = "Obama.jpg"
+    filename = "wallaby.png"
     org_image = load_img(filename)
     plt.imshow(org_image)
     plt.axis('off')
     plt.show()
 
-    image_pix = lego_dat_ish(filename, 25)
+    image_pix = lego_dat_ish(filename, 5)
     plt.imshow(image_pix)
     plt.axis('off')
     plt.savefig("test.png", bbox_inches='tight', origin='lower')
