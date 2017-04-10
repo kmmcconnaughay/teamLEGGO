@@ -1,5 +1,6 @@
 """
-Pixelates a given image.
+Takes in a picture, pixelates it, and then replaces the colors with closest
+matching lego brick color.
 
 Authors: Anil Patel, Onur Talu
 """
@@ -7,8 +8,8 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 import PIL.Image as Image
-# import legolist
 
+"""List of lego colors, will be replaced by a dictionary."""
 legolist = [[251, 229, 8], [74, 184, 72], [236, 29, 35], [69, 140, 204],
             [0, 0, 0], [206, 119, 42], [247, 145, 47],
             [26, 0, 255], [101, 67, 33], [255, 185, 2]]
@@ -18,9 +19,9 @@ def load_img(filename):
     """
     load an image from a file and return it as an array of rgb values.
     """
-    img = Image.open(filename, 'r')
-    data = np.array(img)
-    return data
+    img = Image.open(filename, 'r')  # load the image in read mode
+    data = np.array(img)             # turns the image into an array of rgb
+    return data                      # returns the array
 
 
 def get_square(array, row, col, size):
@@ -61,7 +62,8 @@ def average_square(pixels):
 
 
 def compare(pixels):
-
+    """Takes in a list of pixels and returns the closest match from the list
+       of pre-determined lego colors to the average color of the group."""
     avg_color = average_square(pixels)
 
     r = avg_color[0]
@@ -73,13 +75,16 @@ def compare(pixels):
     min_dist = 100000000
     min_color = 0
 
+    """ perform euclidian distance analysis between the determined avg color
+        of the pixel set and the list of lego colors. Find closest color."""
     for i in range(len(legolist)):
         color = legolist[i]
         color_r = color[0]
         color_g = color[1]
         color_b = color[2]
 
-        dist = math.sqrt(((r-color_r)*1)**2 + ((g - color_g)*1)**2 + ((b - color_b)*1)**2)
+        dist = math.sqrt(((r-color_r)*1)**2 + ((g - color_g)*1)**2 +
+                         ((b - color_b)*1)**2)
 
         if dist < min_dist:
             min_dist = dist
@@ -103,7 +108,7 @@ def get_pixel(super_pixel):
 
     values = average_square(super_pixel)   # grab average rgb values
     pix = super_pixel.shape[0]             # determine pixel side length
-    size = (pix, pix)                       # make a tuple of superpixel size
+    size = (pix, pix)                      # make a tuple of superpixel size
 
     # unpack rgb averages
     red_val = values[0]
@@ -122,7 +127,8 @@ def get_pixel(super_pixel):
 
 def lego_dat_ish(file_name, pixel_size):
     """
-    combine all functions into a fully lego'd image
+    combine all functions into a fully lego'd image. Returns the array of the
+    lego'd image.
     """
 
     array = load_img(file_name)     # create the image array
@@ -137,6 +143,8 @@ def lego_dat_ish(file_name, pixel_size):
     # create an empty array to add to
     pixelated = np.empty((height, width, 3))
 
+    """run through all the rows and columns and populate the empty matrix
+       with the pixelated and lego-adjusted pixels."""
     for col in range(0, numcols):
         for row in range(0, numrows):
             pixels = get_square(array, col, row, squaresize)
@@ -153,6 +161,7 @@ def lego_dat_ish(file_name, pixel_size):
 
 
 def custom_color(red_val, green_val, blue_val):
+    """testing function used to debug the color-displaying stuff."""
     red_matrix = red_val * np.ones((25, 25))
     green_matrix = green_val * np.ones((25, 25))
     blue_matrix = blue_val * np.ones((25, 25))
