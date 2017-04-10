@@ -25,7 +25,7 @@ filenames = ['Brick yellow', 'Bright blue', 'Bright orange', 'Bright red',
              'Medium stone grey', 'Reddish brown', 'Sand green']
 
 legodict, legolist = load_image(filenames)
-# print(legolist)
+print(legolist)
 
 
 def load_img(filename):
@@ -138,7 +138,7 @@ def get_pixel(super_pixel):
     return final
 
 
-def lego_dat_ish(file_name, pixel_size):
+def lego_dat_ish(file_name, mat_size):
     """
     combine all functions into a fully lego'd image. Returns the array of the
     lego'd image.
@@ -146,6 +146,9 @@ def lego_dat_ish(file_name, pixel_size):
 
     array = load_img(file_name)     # create the image array
     size = array.shape              # determine size of the pic
+    scaled_size = min([size[0], size[1]])
+    pixel_size = round(scaled_size/mat_size)
+
     height = size[0] - size[0] % pixel_size  # height of the pic
     width = size[1] - size[1] % pixel_size   # width of the pic
 
@@ -184,13 +187,13 @@ def custom_color(red_val, green_val, blue_val):
 
 if __name__ == "__main__":
 
-    filename = "wallaby.png"
+    filename = "Obama.jpg"
     org_image = load_img(filename)
     plt.imshow(org_image)
     plt.axis('off')
     plt.show()
 
-    image_pix = lego_dat_ish(filename, 5)
+    image_pix = lego_dat_ish(filename, 75)
     plt.imshow(image_pix)
     plt.axis('off')
     plt.savefig("test.png", bbox_inches='tight', origin='lower')
