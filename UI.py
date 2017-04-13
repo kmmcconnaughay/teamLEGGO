@@ -11,9 +11,24 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.logger import Logger
 from kivy.uix.scatter import Scatter
+from kivy.uix.textinput import TextInput
+from kivy.uix.screenmanager import ScreenManager, Screen
 from glob import glob
 import os
 import shutil
+
+
+class InputFile(Screen):
+
+    def __init__(self, **kwargs):
+        super(InputFile, self).__init__(**kwargs)
+        self.label1 = Label(text='What do you want to brick?')
+        button1 = Button(text='Choose a file_name')
+        button1.bind(on_press=SelectFile().run())
+        self.text1 = TextInput(multiline=False)
+        self.add_widget(self.label1)
+        self.add_widget(button1)
+        self.add_widget(self.text1)
 
 
 class DisplayImg(App):
@@ -81,9 +96,13 @@ class SelectFile(App):
             return pngpls.popup()
 
 
+sm = ScreenManager()
+sm.add_widget(InputFile(name='Input File'))
+
 class MyApp(App):
     def build(self):
-        return SelectFile().run()
+        #return InputFile()
+        SelectFile().run()
 
 
 if __name__ == '__main__':
