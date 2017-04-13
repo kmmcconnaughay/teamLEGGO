@@ -88,7 +88,7 @@ class SelectFile(App):
         n = len(self.file_name)
         if self.file_name[n-4:n] == ".png":
             cwd = os.getcwd()
-            shutil.move(self.selected_image, cwd + self.file_name)
+            shutil.copy(self.selected_image, cwd + '/teamLEGGO')
             return Image(source=self.file_name)
             self.stop()
         else:
