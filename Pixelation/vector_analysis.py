@@ -24,8 +24,11 @@ filenames = ['Brick yellow', 'Bright blue', 'Bright orange', 'Bright red',
              'Medium lavendel', 'Medium lilac', 'Medium nougat',
              'Medium stone grey', 'Reddish brown', 'Sand green']
 
+""" initialize an empty list to be populated with all used lego names"""
+lego_nums = []
+
 legodict, legolist = load_image(filenames)
-print(legolist)
+# print(legodict.values)
 
 
 def load_img(filename):
@@ -104,6 +107,8 @@ def compare(pixels):
             min_color = i
 
     lego_color = legolist[min_color]
+    lego = filenames[min_color]
+    lego_nums.append(lego)
 
     r = 255 - int(lego_color[0])
     g = 255 - int(lego_color[1])
@@ -185,16 +190,27 @@ def custom_color(red_val, green_val, blue_val):
     return final
 
 
-if __name__ == "__main__":
+def make_hist(legolist):
+    """makes a histogram of the legos used to make an image for pricing
+       and inventory using in the GUI"""
+    d = dict()
+    for c in legolist:
+        d[c] = d.get(c, 0) + 1
 
+    return d
+
+
+if __name__ == "__main__":
     filename = "Obama.jpg"
     org_image = load_img(filename)
     plt.imshow(org_image)
     plt.axis('off')
     plt.show()
 
-    image_pix = lego_dat_ish(filename, 75)
+    image_pix = lego_dat_ish(filename, 100)
     plt.imshow(image_pix)
     plt.axis('off')
     plt.savefig("test.png", bbox_inches='tight', origin='lower')
     plt.show()
+
+    print(make_hist(lego_nums))
