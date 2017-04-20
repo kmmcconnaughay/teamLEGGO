@@ -40,41 +40,38 @@ class AppBody(FloatLayout):
         self.drawInputImage()
         self.drawImputURL()
         self.drawSize()
-        #self.drawImage()
-        #self.drawGo()
-        print('I just drew page 1!!')
 
     def drawInputImage(self):
         self.add_widget(Label(text= 'Input Your Image:', size_hint=(.1, .1),
-                pos_hint= {'x':.15, 'y':.8}))
+                pos_hint= {'x':.15, 'y':.2}))
         self.button = Button(text = 'Your Files', size_hint=(.5, .1),
-                pos_hint= {'x':.35, 'y':.8})
+                pos_hint= {'x':.35, 'y':.2})
         self.add_widget(self.button)
         self.button.bind(on_press = self.callback)
     def drawImputURL(self):
         self.add_widget(Label(text='Or Input URL', size_hint=(.1, .1),
-                pos_hint= {'x':.15, 'y':.6}))
+                pos_hint= {'x':.15, 'y':.45}))
         self.urlIn = TextInput(multiline=True, size_hint=(.5, .1),
-                pos_hint= {'x':.35, 'y':.6})
+                pos_hint= {'x':.35, 'y':.45})
         self.urlIn.bind(focus=self.on_focus)
         self.add_widget(self.urlIn)
     def drawSize(self):
         self.add_widget(Label(text='Baseplate Size:', size_hint=(.1, .1),
-                pos_hint= {'x':.45, 'y':.475}))
+                pos_hint= {'x':.45, 'y':.775}))
         self.drop1 = Button(text = '5"x5"', size_hint=(.2, .1),
-                pos_hint= {'x':0, 'y':.4})
+                pos_hint= {'x':0, 'y':.7})
         self.add_widget(self.drop1)
-        self.drop2 = Button(text = '6"x6""', size_hint=(.2, .1),
-                pos_hint= {'x':.2, 'y':.4})
+        self.drop2 = Button(text = '6"x6"', size_hint=(.2, .1),
+                pos_hint= {'x':.2, 'y':.7})
         self.add_widget(self.drop2)
         self.drop3 = Button(text = '5"x10"', size_hint=(.2, .1),
-                pos_hint= {'x':.4, 'y':.4})
+                pos_hint= {'x':.4, 'y':.7})
         self.add_widget(self.drop3)
         self.drop4 = Button(text = '10"x10"', size_hint=(.2, .1),
-                pos_hint= {'x':.6, 'y':.4})
+                pos_hint= {'x':.6, 'y':.7})
         self.add_widget(self.drop4)
         self.drop5 = Button(text = '15"x15"', size_hint=(.2, .1),
-                pos_hint= {'x':.8, 'y':.4})
+                pos_hint= {'x':.8, 'y':.7})
         self.add_widget(self.drop5)
 
         self.drop1.bind(on_press = self.callback)
@@ -83,20 +80,18 @@ class AppBody(FloatLayout):
         self.drop4.bind(on_press = self.callback)
         self.drop5.bind(on_press = self.callback)
 
-    '''def drawImage(self):
-        self.wimg = Image(source = 'teamLEGGO.png', size_hint=(.4, .4),
-                pos_hint= {'x':.3, 'y':.0})
-        self.add_widget(self.wimg)
-    def drawGo (self):
-        self.go = Button(text = 'LEGGO', size_hint=(.1, .05),
-                pos_hint= {'x':.9, 'y':.0})
-        self.add_widget(self.go)
-        self.go.bind(on_press = self.callback)'''
-
 
     def callback(self, instance):
         if instance.text == '5"x5"':
-            print(self.animal)
+            print('5x5')
+        if instance.text == '6"x6"':
+            print('6x6')
+        if instance.text == '5"x10"':
+            print('5x10')
+        if instance.text == '10"x10"':
+            print('10x10')
+        if instance.text == '15"x15"':
+            print('15x15')
         if instance.text == 'LEGGO':
             self.clear_widgets()
             self.animal = 'tiger'
