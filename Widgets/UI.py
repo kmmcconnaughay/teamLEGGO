@@ -64,14 +64,16 @@ class SelectFile(App):
             shutil.copy(self.selected_image, cwd + '/teamLEGGO.png')
             self.browser.clear_widgets()
             print('hey there I am quitting nicely')
-            self.drawInputImage2()
+            self.drawLabelImage()
+            #print(dir(self.browser))
+            #self.browser.remove_widget()
             self.drawImage2()
             self.drawBackButton()
         else:
             pngpls = PngPls()
             return pngpls.popup()
 
-    def drawInputImage2(self):
+    def drawLabelImage(self):
         self.browser.add_widget(Label(text= 'Here is your image!:', size_hint=(.1, .1),
                 pos_hint= {'x':.15, 'y':.8}))
     def drawImage2(self):

@@ -1,17 +1,4 @@
 from kivy.app import App
-from kivy.garden.filebrowser import FileBrowser
-from kivy.utils import platform
-from os.path import sep, expanduser, dirname
-from kivy.uix.popup import Popup
-from kivy.uix.boxlayout import BoxLayout
-from kivy.properties import ObjectProperty, StringProperty
-from kivy.logger import Logger
-from kivy.uix.scatter import Scatter
-from kivy.uix.screenmanager import ScreenManager, Screen
-from glob import glob
-import os
-import shutil
-
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.stacklayout import StackLayout
