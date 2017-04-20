@@ -151,7 +151,7 @@ def lego_dat_ish(file_name, mat_size):
 
     array = load_img(file_name)     # create the image array
     size = array.shape              # determine size of the pic
-    scaled_size = min([size[0], size[1]])
+    scaled_size = max([size[0], size[1]])
     pixel_size = round(scaled_size/mat_size)
 
     height = size[0] - size[0] % pixel_size  # height of the pic
@@ -201,16 +201,21 @@ def make_hist(legolist):
 
 
 if __name__ == "__main__":
-    filename = "Obama.jpg"
+    print('Please specify the size of your mat:')
+    input_mat_size = input()
+
+    filename = "Will.jpg"
     org_image = load_img(filename)
     plt.imshow(org_image)
     plt.axis('off')
     plt.show()
 
-    image_pix = lego_dat_ish(filename, 100)
+    image_pix = lego_dat_ish(filename, int(input_mat_size))
     plt.imshow(image_pix)
     plt.axis('off')
     plt.savefig("test.png", bbox_inches='tight', origin='lower')
     plt.show()
 
     print(make_hist(lego_nums))
+    print('The total number of bricks used is '+str(len(lego_nums)))
+    print('The total cost is '+str(round(len(lego_nums)*.07))+' dollars')
