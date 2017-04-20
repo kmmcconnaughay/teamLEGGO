@@ -22,13 +22,11 @@ filenames = ['Brick yellow', 'Bright blue', 'Bright orange', 'Bright red',
              'Bright yellowish green', 'Dark green', 'Dark stone grey',
              'Light purple', 'Medium azur', 'Medium blue',
              'Medium lavendel', 'Medium lilac', 'Medium nougat',
-             'Medium stone grey', 'Reddish brown', 'Sand green']
+             'Medium stone grey', 'Reddish brown', 'Sand green', 'White']
 
 """ initialize an empty list to be populated with all used lego names"""
 lego_nums = []
-
 legodict, legolist = load_image(filenames)
-# print(legodict.values)
 
 
 def load_img(filename):
@@ -200,11 +198,25 @@ def make_hist(legolist):
     return d
 
 
+def get_price(lego_nums, input_mat_size):
+    """Gets the cumulative cost of the lego mat and the lego bricks.
+        The price of lego mat is taken from a dictionary, while the price of
+        1x1 lego bricks is 7 cents each."""
+    brick_cost = round(len(lego_nums)*.07)
+    mat_cost = int(25)  # this should change after research
+    total_cost = brick_cost+mat_cost
+
+    print('The total number of bricks used is '+str(len(lego_nums)))
+    print('The total cost is '+str(total_cost)+' dollars')
+
+
 if __name__ == "__main__":
     print('Please specify the size of your mat:')
     input_mat_size = input()
 
-    filename = "Will.jpg"
+    name = "Kerry"
+    extension = ".jpg"
+    filename = name+extension
     org_image = load_img(filename)
     plt.imshow(org_image)
     plt.axis('off')
@@ -213,9 +225,8 @@ if __name__ == "__main__":
     image_pix = lego_dat_ish(filename, int(input_mat_size))
     plt.imshow(image_pix)
     plt.axis('off')
-    plt.savefig("test.png", bbox_inches='tight', origin='lower')
+    plt.savefig(name+"_pix"+extension, bbox_inches='tight', origin='lower')
     plt.show()
 
-    print(make_hist(lego_nums))
-    print('The total number of bricks used is '+str(len(lego_nums)))
-    print('The total cost is '+str(round(len(lego_nums)*.07))+' dollars')
+    # print(make_hist(lego_nums))
+    get_price(lego_nums, input_mat_size)

@@ -42,5 +42,5 @@ if __name__ == '__main__':
                  'Bright yellowish green', 'Dark green', 'Dark stone grey',
                  'Light purple', 'Medium azur', 'Medium blue',
                  'Medium lavendel', 'Medium lilac', 'Medium nougat',
-                 'Medium stone grey', 'Reddish brown', 'Sand green']
+                 'Medium stone grey', 'Reddish brown', 'Sand green', 'White']
     list_of_colors = load_image(filenames)
