@@ -20,7 +20,7 @@ def load_image(filenames):
     # subprocess.call('pwd')
     # newpath = subprocess.call('cd', '..')
     # print(newpath)
-    localpath = '/home/onurtalu/Documents'
+    localpath = '/home/annie/Documents'
     path = '/teamLEGGO/Pick A Brick_LEGO_All_Bricks'
     for filename in filenames:
         image = Image.open(localpath + path + '//' + filename, 'r')

@@ -30,9 +30,10 @@ from kivy.uix.screenmanager import ScreenManager, Screen, WipeTransition
 from glob import glob
 import os
 import shutil
+from vector_analysis import vectorStuff
 
 
-
+input_mat_size = 100;
 class AppBody(FloatLayout):
 
     def __init__(self, **kwargs):
@@ -89,15 +90,25 @@ class AppBody(FloatLayout):
 
     def callback(self, instance):
         if instance.text == '5"x5"':
-            print('5x5')
+            global input_mat_size
+            input_mat_size = 16
+            print(input_mat_size)
         if instance.text == '6"x6"':
-            print('6x6')
+            global input_mat_size
+            input_mat_size = 19
+            print(input_mat_size)
         if instance.text == '5"x10"':
-            print('5x10')
+            global input_mat_size
+            input_mat_size = 16
+            print(input_mat_size)
         if instance.text == '10"x10"':
-            print('10x10')
+            global input_mat_size
+            input_mat_size = 32
+            print(input_mat_size)
         if instance.text == '15"x15"':
-            print('15x15')
+            global input_mat_size
+            input_mat_size = 48
+            print(input_mat_size)
         if instance.text == 'LEGGO':
             self.clear_widgets()
             self.animal = 'tiger'
@@ -171,7 +182,10 @@ class SelectFile(App):
         self.browser.add_widget(Label(text= 'Here is your image!:', size_hint=(.1, .1),
                 pos_hint= {'x':.15, 'y':.8}))
     def drawImage2(self):
-        self.wimg = Image(source = 'teamLEGGO.png', size_hint=(.6, .6),
+        pixelationProgram = vectorStuff()
+        pixelationProgram.input_mat_size = input_mat_size
+        pixelationProgram.runPixel()
+        self.wimg = Image(source = 'teamLEGGO_pix.png', size_hint=(.6, .6),
                 pos_hint= {'x':.2, 'y':.2})
         self.browser.add_widget(self.wimg)
     def drawBackButton(self):
