@@ -159,7 +159,7 @@ class SelectFile(App):
     def _fbrowser_canceled(self, instance):
         self.browser.clear_widgets()
         self.stop()
-        from learningWidgets import Leggo_Mosiaac, AppBody
+        from GUI import Leggo_Mosiaac, AppBody
         Leggo_Mosiaac().run()
     def _fbrowser_success(self, instance):
         self.selected_image = str(instance.selection)
