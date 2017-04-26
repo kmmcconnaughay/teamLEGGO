@@ -217,8 +217,8 @@ class vectorStuff():
 
     def runPixel(self):
         print('Please specify the size of your mat:')
-        name = "teamLEGGO"
-        extension = ".png"
+        name = "Obama"
+        extension = ".jpg"
         filename = name+extension
         org_image = self.load_img(filename)
         plt.imshow(org_image)
