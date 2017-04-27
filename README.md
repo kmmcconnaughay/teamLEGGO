@@ -1,7 +1,9 @@
-# teamLEGGO
-This the repository for the final project of Software Design at Olin College Spring 2017. This program lets the user input an image and returns the same image, but with its pixels represented as LEGO bricks. The program also lets the user specify a baseplate size and outputs the number of bricks needed and the total cost of the bricks.  
+# (LEGO) Brick and Build Your Image: Build an Image of your Choice out of LEGO's
+This project has code that lets a user input an image and returns the same image, but with its pixels represented as LEGO bricks. The program also lets a user specify a baseplate size and outputs the number of bricks needed and the total cost of the bricks.  
 
 ### Instructions for General Use in Ubuntu:  
+- Input required is a ".png" file.
+- User should expect to see a "bricked" image and the number and cost of the LEGO bricks required to build the picture in real life.
 
 
 Install the following python libraries:  
@@ -19,3 +21,11 @@ For install follow the instructions at:   http://docs.opencv.org/2.4/doc/tutoria
 For install follow the instructions at: https://kivy.org/docs/installation/installation-linux.html (install stable for best results)  
 **Kivy Garden**  
 For install follow the instructions at: https://kivy.org/docs/api-kivy.garden.html  
+
+
+This code was a collaborative effort between:  
+- Ana Krishnan  
+- Annie Kroo  
+- Kerry McConnaughay 
+- Anil Patel  
+- Onur Talu  
