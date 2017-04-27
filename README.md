@@ -1,7 +1,9 @@
 # teamLEGGO
 This the repository for the final project of Software Design at Olin College Spring 2017. This program lets the user input an image and returns the same image, but with its pixels represented as LEGO bricks. The program also lets the user specify a baseplate size and outputs the number of bricks needed and the total cost of the bricks.  
 
-Instructions for General Use in Ubuntu:  
+### Instructions for General Use in Ubuntu:  
+
+
 Install the following python libraries:  
 **Numpy**  
 Type the following in your command window: sudo pip3 install numpy  
