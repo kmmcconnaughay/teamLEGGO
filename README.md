@@ -1,5 +1,5 @@
 # (LEGO) Brick and Build Your Image: Build an Image of your Choice out of LEGOs
-This project includes code that lets a user input an image and returns the same image, but with its pixels represented as LEGO bricks. The program also lets a user specify a baseplate size and outputs the number of bricks needed and the total cost of the bricks.  
+This project includes code that lets a user input an image and returns the same image, but with its pixels represented as LEGO bricks. The program also lets a user specify a base plate size and outputs the number of bricks needed and the total cost of the bricks.  
 
 ### Instructions for General Use in Ubuntu:  
 - Input required is a ".png" file.
@@ -22,5 +22,8 @@ For install follow the instructions at: https://kivy.org/docs/installation/insta
 **Kivy Garden**  
 For install follow the instructions at: https://kivy.org/docs/api-kivy.garden.html  
 
+Steps:
+- A black screen will appear. Choose a size for your base plate and select "Your Files."  
+- Here you will choose a ".png" file and the program will run after you click "Select."  
 
 Authors: Ana Krishnan, Annie Kroo, Kerry McConnaughay, Anil Patel, Onur Talu  
