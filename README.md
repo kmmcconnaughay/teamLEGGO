@@ -5,6 +5,8 @@ This the repository for the final project of Software Design at Olin College Spr
 
 
 Install the following python libraries:  
+
+
 **Numpy**  
 Type the following in your command window: sudo pip3 install numpy  
 **PIL**  
