@@ -1,4 +1,4 @@
-# (LEGO) Brick and Build Your Image: Build an Image of your Choice out of LEGOs
+# (LEGO) Brick and Build Your Image: Build an Image of Your Choice out of LEGOs
 This project includes code that lets a user input an image and returns the same image, but with its pixels represented as LEGO bricks. The program also lets a user specify a base plate size and outputs the number of bricks needed and the total cost of the bricks.  
 
 ### Instructions for General Use in Ubuntu:  
