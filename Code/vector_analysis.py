@@ -216,20 +216,20 @@ class vectorStuff():
 
 
     def runPixel(self):
-        print('Please specify the size of your mat:')
-        name = "Obama"
-        extension = ".jpg"
+        #print('Please specify the size of your mat:')
+        name = "teamLEGGO"
+        extension = ".png"
         filename = name+extension
         org_image = self.load_img(filename)
         plt.imshow(org_image)
         plt.axis('off')
-        plt.show()
+        #plt.show()
 
         image_pix = self.lego_dat_ish(filename, int(self.input_mat_size))
         plt.imshow(image_pix)
         plt.axis('off')
         plt.savefig(name+"_pix"+extension, bbox_inches='tight', origin='lower')
-        plt.show()
+        #plt.show()
 
         # print(self.make_hist())
         self.get_price(self.lego_nums, self.input_mat_size)
