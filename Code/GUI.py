@@ -31,6 +31,7 @@ from glob import glob
 import os
 import shutil
 from vector_analysis import vectorStuff
+import urllib.request
 
 
 input_mat_size = 100;
@@ -56,7 +57,7 @@ class AppBody(FloatLayout):
         self.add_widget(self.button)
         self.button.bind(on_press = self.callback)
     def drawImputURL(self):
-        self.add_widget(Label(text='Or Input URL', size_hint=(.1, .1),
+        self.add_widget(Label(text='Or Input URL to an image', size_hint=(.1, .1),
                 pos_hint= {'x':.15, 'y':.45}))
         self.urlIn = TextInput(multiline=True, size_hint=(.5, .1),
                 pos_hint= {'x':.35, 'y':.45})
@@ -120,10 +121,12 @@ class AppBody(FloatLayout):
             SelectFile().run()
     def on_focus(self, instance, value):
         if value:
-            print('User focused', instance)
+            pass
         else:
-            print('User defocused', instance)
-            print (instance.text)
+            self.inputURL = instance.text
+            cwd = os.getcwd()
+            urllib.request.urlretrieve(instance.text, "URLimg.png")
+            shutil.copy('URLimg.png', cwd + '/URLimg.png')
 
 class PngPls(Popup):
 
@@ -185,7 +188,7 @@ class SelectFile(App):
         pixelationProgram = vectorStuff()
         pixelationProgram.input_mat_size = input_mat_size
         pixelationProgram.runPixel()
-        self.wimg = Image(source = 'teamLEGGO_pix.png', size_hint=(.6, .6),
+        self.wimg = Image(source = 'URLimg.png', size_hint=(.6, .6),
                 pos_hint= {'x':.2, 'y':.2})
         self.browser.add_widget(self.wimg)
     def drawBackButton(self):
