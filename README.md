@@ -23,9 +23,4 @@ For install follow the instructions at: https://kivy.org/docs/installation/insta
 For install follow the instructions at: https://kivy.org/docs/api-kivy.garden.html  
 
 
-This code was a collaborative effort between:  
-- Ana Krishnan  
-- Annie Kroo  
-- Kerry McConnaughay 
-- Anil Patel  
-- Onur Talu  
+Authors: Ana Krishnan, Annie Kroo, Kerry McConnaughay, Anil Patel, Onur Talu  
