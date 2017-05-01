@@ -1,3 +1,11 @@
+"""
+The GUI for the LEGO Brick'd project. Allows users to select files that they want
+to pixelate, pixelates the image, and displays it.
+
+Authors: Ana Krishnan and Annie Kroo
+
+"""
+
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.anchorlayout import AnchorLayout
