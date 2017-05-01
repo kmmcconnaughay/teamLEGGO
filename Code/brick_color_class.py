@@ -17,7 +17,10 @@ class Brick():
         """
         self.height = 75
         self.width = 75
-        self.path = '/home/kerry/teamLEGGO/Pick A Brick_LEGO_All_Bricks'
+        self.cwd = os.getcwd()
+        i = len(cwd)
+        self.cwd = self.cwd[0:i-5]
+        self.path = self.cwd + '/Pick A Brick_LEGO_All_Bricks'
         self.filenames = ['Brick yellow', 'Bright blue', 'Bright orange', 'Bright red',
         'Bright reddish violet', 'Bright yellow', 'Bright yellowish green', 'Dark green',
         'Dark stone grey', 'Light purple', 'Medium azur', 'Medium blue', 'Medium lavendel',
