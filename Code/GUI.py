@@ -32,7 +32,6 @@ import shutil
 from vector_analysis import vectorStuff
 import urllib.request
 
-
 input_mat_size = 100;
 class AppBody(FloatLayout):
 
@@ -125,7 +124,8 @@ class AppBody(FloatLayout):
             self.inputURL = instance.text
             cwd = os.getcwd()
             urllib.request.urlretrieve(instance.text, "URLimg.png")
-            shutil.copy('URLimg.png', cwd + '/URLimg.png')
+            dir_path = os.path.dirname(os.path.realpath('URLimg.png'))
+            shutil.copy(dir_path + 'URLimg.png', cwd + '/URLimg.png')
 
 class PngPls(Popup):
 
@@ -209,4 +209,4 @@ class Leggo_Mosiaac(App):
 
 
 if __name__ == '__main__':
-Leggo_Mosiaac().run()
+    Leggo_Mosiaac().run()
