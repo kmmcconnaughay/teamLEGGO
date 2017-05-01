@@ -52,7 +52,7 @@ class AppBody(FloatLayout):
         self.clear_widgets()
         self.size = (300, 300)
         self.drawInputImage()
-        self.drawImputURL()
+        self.drawInputURL()
         self.drawSize()
 
     def drawInputImage(self):
@@ -66,7 +66,7 @@ class AppBody(FloatLayout):
                 pos_hint= {'x':.35, 'y':.2})
         self.add_widget(self.button)
         self.button.bind(on_press = self.callback)
-    def drawImputURL(self):
+    def drawInputURL(self):
         '''
         Add text input that has a label next to it with instructions. Binds this
         to on_focus such that it calls on_focus when the box is either clicked on
@@ -146,8 +146,49 @@ class AppBody(FloatLayout):
             pass
         else:
             self.inputURL = instance.text
-            cwd = os.getcwd()
-            urllib.request.urlretrieve(instance.text, "URLimg.png")
+            n = len(self.inputURL)
+            if self.inputURL[n-4:n] == ".png":
+                cwd = os.getcwd()
+                urllib.request.urlretrieve(instance.text, "teamLEGGO.png")
+                self.clear_widgets()
+                self.drawLabelImage()
+                self.drawImage2()
+                self.drawBackButton()
+            else:
+                pngpls = PngPls()
+                return pngpls.popup()
+
+    def drawLabelImage(self):
+        '''
+        Displays label for selected image.
+        '''
+        self.add_widget(Label(text= 'Here is your image!:', size_hint=(.1, .1),
+                pos_hint= {'x':.15, 'y':.8}))
+    def drawImage2(self):
+        '''
+        Displays the pixelated image.
+        '''
+        pixelationProgram = vectorStuff()
+        pixelationProgram.input_mat_size = input_mat_size
+        pixelationProgram.runPixel()
+        self.wimg = Image(source = 'teamLEGGO_pix.png', size_hint=(.6, .6),
+                pos_hint= {'x':.2, 'y':.2})
+        self.add_widget(self.wimg)
+    def drawBackButton(self):
+        '''
+        Adds back button to allow the user to return to the main page.
+        '''
+        self.back = Button(text = 'Back', size_hint=(.1, .05),
+                pos_hint= {'x':.9, 'y':.0})
+        self.add_widget(self.back)
+        self.back.bind(on_press = self.call)
+    def call(self, instance):
+        '''
+        Runs the Lego mosaic main interface again.
+        '''
+        if instance.text == 'Back':
+            self.clear_widgets()
+            Leggo_Mosiaac().run()
 
 
 class PngPls(Popup):
@@ -231,13 +272,13 @@ class SelectFile(App):
 
     def drawLabelImage(self):
         '''
-        Displays the selected image.
+        Displays label for selected image.
         '''
         self.browser.add_widget(Label(text= 'Here is your image!:', size_hint=(.1, .1),
                 pos_hint= {'x':.15, 'y':.8}))
     def drawImage2(self):
         '''
-        Displays the "brick'd" image.
+        Displays the pixelated image.
         '''
         pixelationProgram = vectorStuff()
         pixelationProgram.input_mat_size = input_mat_size
