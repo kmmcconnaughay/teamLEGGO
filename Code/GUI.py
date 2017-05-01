@@ -12,7 +12,6 @@ from kivy.uix.dropdown import DropDown
 from kivy.base import runTouchApp
 from kivy.uix.image import Image
 
-from kivy.app import App
 from kivy.garden.filebrowser import FileBrowser
 from kivy.utils import platform
 from kivy.app import App
@@ -44,7 +43,7 @@ class AppBody(FloatLayout):
     def drawPage1(self):
         self.clear_widgets()
         self.size = (300, 300)
-        self.animal = 'teamLEGGO'
+        self.animal = 'teamLEGGO_pix'
         self.drawInputImage()
         self.drawImputURL()
         self.drawSize()
@@ -188,7 +187,7 @@ class SelectFile(App):
         pixelationProgram = vectorStuff()
         pixelationProgram.input_mat_size = input_mat_size
         pixelationProgram.runPixel()
-        self.wimg = Image(source = 'URLimg.png', size_hint=(.6, .6),
+        self.wimg = Image(source = 'teamLEGGO_pix.png', size_hint=(.6, .6),
                 pos_hint= {'x':.2, 'y':.2})
         self.browser.add_widget(self.wimg)
     def drawBackButton(self):
@@ -210,4 +209,4 @@ class Leggo_Mosiaac(App):
 
 
 if __name__ == '__main__':
-    Leggo_Mosiaac().run()
+Leggo_Mosiaac().run()
