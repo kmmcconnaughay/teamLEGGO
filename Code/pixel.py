@@ -162,13 +162,15 @@ def custom_color(red_val, green_val, blue_val):
 
 if __name__ == "__main__":
 
-    org_image = load_img('Obama.jpg')
+    org_image = load_img('brick_template.png')
+    print(org_image.shape)
     plt.imshow(org_image)
     plt.axis('off')
     plt.show()
-
+    """"
     image_pix = pixelate_dat_ish('Obama.jpg', 25)
     plt.imshow(image_pix)
     plt.axis('off')
     plt.savefig("test.png", bbox_inches='tight')
     plt.show()
+    """
