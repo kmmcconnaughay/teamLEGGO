@@ -13,6 +13,8 @@ import numpy as np
 
 class Brick():
     def __init__(self):
+        """ Initialize the class, Brick.
+        """
         self.height = 75
         self.width = 75
         self.path = '/home/kerry/teamLEGGO/Pick A Brick_LEGO_All_Bricks'
@@ -33,6 +35,9 @@ class Brick():
         return self.bricks
 
     def get_colors(self):
+        """ Get a list and dictionary of the RGB values of the middle pixels of
+        each LEGO brick image.
+        """
         self.brick_pixels = {}
         self.image_middle_pixels = []
 
@@ -42,11 +47,6 @@ class Brick():
             self.data = np.array(brick)
             self.middle_pixel = self.data[int(self.height/2), int(0.6 * self.width)]
             self.image_middle_pixels.append(self.middle_pixel)
-            # self.brick_pixels[filename] = self.middle_pixel
-
-            # print(filename, middle_pixel)
-            # print(middle_pixel)
-        # print(self.brick_pixels)
         print(self.image_middle_pixels)
         return  self.brick_pixels, self.image_middle_pixels
 

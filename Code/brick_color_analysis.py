@@ -6,7 +6,6 @@ Author: Kerry McConnaughay
 
 """
 import cv2
-# import subprocess
 import PIL.Image as Image
 import numpy as np
 
@@ -17,10 +16,14 @@ def load_image(filenames):
     """
     brick_pixels = {}
     image_middle_pixels = []
+<<<<<<< HEAD
     # subprocess.call('pwd')
     # newpath = subprocess.call('cd', '..')
     # print(newpath)
     localpath = '/home/onurtalu/Documents'
+=======
+    localpath = '/home/annie/Documents'
+>>>>>>> 3e5b664f1c193bbf1092eae201a11cea880a55fe
     path = '/teamLEGGO/Pick A Brick_LEGO_All_Bricks'
     for filename in filenames:
         image = Image.open(localpath + path + '//' + filename, 'r')
@@ -31,8 +34,6 @@ def load_image(filenames):
         middle_pixel = data[int(height/2), int(0.6 * width)]
         brick_pixels[filename] = middle_pixel
         image_middle_pixels.append(middle_pixel)
-        # print(filename, middle_pixel)
-        # print(middle_pixel)
     return brick_pixels, image_middle_pixels
 
 
