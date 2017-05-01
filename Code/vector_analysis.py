@@ -16,11 +16,6 @@ class vectorStuff():
         self.input_mat_size = 100
         """List of lego colors, will be replaced by a dictionary."""
 
-        """
-        self.legolist = [[251, 229, 8], [74, 184, 72], [236, 29, 35], [69, 140, 204],
-                    [0, 0, 0], [206, 119, 42], [247, 145, 47],
-                    [26, 0, 255], [101, 67, 33], [255, 185, 2]]
-        """
         self.filenames = ['Brick yellow', 'Bright blue', 'Bright orange', 'Bright red',
                      'Bright reddish violet', 'Bright yellow',
                      'Bright yellowish green', 'Dark green', 'Dark stone grey',
@@ -151,17 +146,17 @@ class vectorStuff():
         lego'd image.
         """
 
-        array = self.load_img(file_name)     # create the image array
-        size = array.shape              # determine size of the pic
+        array = self.load_img(file_name)  # create the image array
+        size = array.shape                # determine size of the pic
         scaled_size = max([size[0], size[1]])
         pixel_size = round(scaled_size/mat_size)
 
         height = size[0] - size[0] % pixel_size  # height of the pic
         width = size[1] - size[1] % pixel_size   # width of the pic
 
-        squaresize = pixel_size                    # side length of superpixel
-        numcols = math.floor(width/squaresize)     # number of columns rounded down
-        numrows = math.floor(height/squaresize)   # number of rows rounded down
+        squaresize = pixel_size                   # side length of superpixel
+        numcols = math.floor(width/squaresize)    # num columns rounded down
+        numrows = math.floor(height/squaresize)   # num rows rounded down
 
         # create an empty array to add to
         pixelated = np.empty((height, width, 3))
@@ -182,6 +177,52 @@ class vectorStuff():
 
         return pixelated
 
+    def lego_dat_brick(self, file_name, mat_size):
+        """
+        combine all functions into a fully lego'd image. Returns the array of
+        the lego'd image.
+        """
+        brick_size = 27
+        array = self.load_img(file_name)     # create the image array
+        size = array.shape              # determine size of the pic
+        scaled_size = max([size[0], size[1]])
+        pixel_size = round(scaled_size/mat_size)
+
+        height = size[0] - size[0] % pixel_size  # height of the pic
+        width = size[1] - size[1] % pixel_size   # width of the pic
+
+        squaresize = pixel_size                    # side length of superpixel
+        numcols = math.floor(width/squaresize)     # number of columns rnd down
+        numrows = math.floor(height/squaresize)   # number of rows rounded down
+
+        height_lego = numcols*brick_size
+        width_lego = numrows*brick_size
+
+        # print(height_lego)
+        # print(width_lego)
+
+        # create an empty array to add to
+        pixelated = np.empty((height_lego, width_lego, 3))
+        brick = self.load_img('brick_template.png')
+
+        """run through all the rows and columns and populate the empty matrix
+           with the pixelated and lego-adjusted pixels."""
+        for col in range(0, numcols-20):
+            for row in range(0, numrows-20):
+                # pixels = self.get_square(array, col, row, squaresize)
+                # super_pixel = self.compare(pixels)
+
+                firstcol = col*brick_size
+                lastcol = firstcol+brick_size
+
+                firstrow = row*brick_size
+                lastrow = firstrow+brick_size
+
+                # print(lastcol)
+                brick = [255, 255, 255] - brick[:, :, 0:3]
+                pixelated[firstrow:lastrow, firstcol:lastcol, :] = brick
+
+        return pixelated
 
     def custom_color(self, red_val, green_val, blue_val):
         """testing function used to debug the color-displaying stuff."""
@@ -190,7 +231,6 @@ class vectorStuff():
         blue_matrix = blue_val * np.ones((25, 25))
         final = np.dstack((red_matrix, green_matrix, blue_matrix))
         return final
-
 
     def make_hist(self):
         """makes a histogram of the legos used to make an image for pricing
@@ -201,11 +241,10 @@ class vectorStuff():
 
         return d
 
-
     def get_price(self, lego_nums, input_mat_size):
         """Gets the cumulative cost of the lego mat and the lego bricks.
-            The price of lego mat is taken from a dictionary, while the price of
-            1x1 lego bricks is 7 cents each."""
+            The price of lego mat is taken from a dictionary, while the price
+            of 1x1 lego bricks is 7 cents each."""
         brick_cost = round(len(lego_nums)*.07)
         mat_cost = int(25)  # this should change after research
         total_cost = brick_cost+mat_cost
@@ -213,23 +252,35 @@ class vectorStuff():
         print('The total number of bricks used is '+str(len(lego_nums)))
         print('The total cost is '+str(total_cost)+' dollars')
 
-
-
     def runPixel(self):
-        #print('Please specify the size of your mat:')
+
+        # print('Please specify the size of your mat:')
+
         name = "teamLEGGO"
         extension = ".png"
         filename = name+extension
-        org_image = self.load_img(filename)
-        plt.imshow(org_image)
-        plt.axis('off')
-        #plt.show()
+        # org_image = self.load_img(filename)
+        # plt.imshow(org_image)
+        # plt.axis('off')
+        # plt.show()
 
-        image_pix = self.lego_dat_ish(filename, int(self.input_mat_size))
+        # image_pix = self.lego_dat_brick(filename, int(self.input_mat_size))
+        image_pix = self.lego_dat_brick(filename, 50)
+        # print(image_pix)
         plt.imshow(image_pix)
         plt.axis('off')
         plt.savefig(name+"_pix"+extension, bbox_inches='tight', origin='lower')
-        #plt.show()
+        plt.show()
+
+        img = self.load_img('brick_template.png')
+        plt.imshow(img)
+        plt.axis('off')
+        plt.show()
 
         # print(self.make_hist())
         self.get_price(self.lego_nums, self.input_mat_size)
+
+
+if __name__ == "__main__":
+    pic = vectorStuff()
+    pic.runPixel()
