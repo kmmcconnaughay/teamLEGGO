@@ -256,12 +256,12 @@ class vectorStuff():
         # print(width_lego)
 
         # create an empty array to add to
-        pixelated = np.empty((height_lego, width_lego, 3))
+        pixelated = np.empty((width_lego, height_lego, 3))
 
         """run through all the rows and columns and populate the empty matrix
            with the pixelated and lego-adjusted pixels."""
-        for col in range(0, numcols-1):
-            for row in range(0, numrows-1):
+        for col in range(0, numcols):
+            for row in range(0, numrows):
 
                 pixels = self.get_square(array, col, row, squaresize)
                 brick_index = self.brick_picker(pixels)
