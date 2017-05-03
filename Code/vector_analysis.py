@@ -115,6 +115,43 @@ class vectorStuff():
         # print(r, g, b)
         return [r, g, b]
 
+    def brick_picker(self, pixels):
+        """Takes in a list of pixels and finds the closest match from the list
+           of pre-determined lego colors to the average color of the group.
+           Instead of returning these RGB values, it returns the list index of
+           the color so that the right brick can repopulate the lego textured
+           image"""
+        avg_color = self.average_square(pixels)
+
+        r = avg_color[0]
+        g = avg_color[1]
+        b = avg_color[2]
+
+        # return [r, g, b]
+
+        min_dist = 100000000
+        min_color = 0
+
+        """ perform euclidian distance analysis between the determined avg color
+            of the pixel set and the list of lego colors. Find closest color."""
+        for i in range(len(self.legolist)):
+            color = self.legolist[i]
+            color_r = color[0]
+            color_g = color[1]
+            color_b = color[2]
+
+            dist = math.sqrt(((r-color_r)*1)**2 + ((g - color_g)*1)**2 +
+                             ((b - color_b)*1)**2)
+
+            if dist < min_dist:
+                min_dist = dist
+                min_color = i
+
+        # lego_color = self.legolist[min_color]
+        lego = self.filenames[min_color]
+        self.lego_nums.append(lego)
+
+        return min_color
 
     def get_pixel(self, super_pixel):
         """
@@ -138,7 +175,6 @@ class vectorStuff():
         # stack matrices on top of each other
         final = np.dstack((red_matrix, green_matrix, blue_matrix))
         return final
-
 
     def lego_dat_ish(self, file_name, mat_size):
         """
@@ -177,22 +213,40 @@ class vectorStuff():
 
         return pixelated
 
+    def get_lego_pix(self):
+        """
+        function for loading all of the images of lego bricks and saving them
+        as arrays. Returns a list of all the arrays. This list will be called
+        to create the lego'd image with a lego texture.
+        """
+        lego_names = self.filenames
+        lego_pix = []
+
+        for pic in lego_names:
+            label = str(pic)+'.png'
+            image = self.load_img(label)
+            lego_pix.append(image)
+
+        return lego_pix
+
     def lego_dat_brick(self, file_name, mat_size):
         """
         combine all functions into a fully lego'd image. Returns the array of
         the lego'd image.
         """
-        brick_size = 27
+
+        brick_pix = self.get_lego_pix()      # get list of lego arrays
+        brick_size = 27                      # define length of lego pixel size
         array = self.load_img(file_name)     # create the image array
-        size = array.shape              # determine size of the pic
+        size = array.shape                   # determine size of the pic
         scaled_size = max([size[0], size[1]])
         pixel_size = round(scaled_size/mat_size)
 
         height = size[0] - size[0] % pixel_size  # height of the pic
         width = size[1] - size[1] % pixel_size   # width of the pic
 
-        squaresize = pixel_size                    # side length of superpixel
-        numcols = math.floor(width/squaresize)     # number of columns rnd down
+        squaresize = pixel_size                   # side length of superpixel
+        numcols = math.floor(width/squaresize)    # number of columns rnd down
         numrows = math.floor(height/squaresize)   # number of rows rounded down
 
         height_lego = numcols*brick_size
@@ -203,13 +257,15 @@ class vectorStuff():
 
         # create an empty array to add to
         pixelated = np.empty((height_lego, width_lego, 3))
-        brick = self.load_img('brick_template.png')
 
         """run through all the rows and columns and populate the empty matrix
            with the pixelated and lego-adjusted pixels."""
-        for col in range(0, numcols-20):
-            for row in range(0, numrows-20):
-                # pixels = self.get_square(array, col, row, squaresize)
+        for col in range(0, numcols):
+            for row in range(0, numrows):
+
+                pixels = self.get_square(array, col, row, squaresize)
+                brick_index = self.brick_picker(pixels)
+                the_brick = brick_pix[brick_index]
                 # super_pixel = self.compare(pixels)
 
                 firstcol = col*brick_size
@@ -219,7 +275,7 @@ class vectorStuff():
                 lastrow = firstrow+brick_size
 
                 # print(lastcol)
-                brick = [255, 255, 255] - brick[:, :, 0:3]
+                brick = [255, 255, 255] - the_brick[:, :, 0:3]
                 pixelated[firstrow:lastrow, firstcol:lastcol, :] = brick
 
         return pixelated
@@ -256,8 +312,8 @@ class vectorStuff():
 
         # print('Please specify the size of your mat:')
 
-        name = "teamLEGGO"
-        extension = ".png"
+        name = "alex"
+        extension = ".jpg"
         filename = name+extension
         # org_image = self.load_img(filename)
         # plt.imshow(org_image)
@@ -272,11 +328,6 @@ class vectorStuff():
         plt.savefig(name+"_pix"+extension, bbox_inches='tight', origin='lower')
         plt.show()
 
-        img = self.load_img('brick_template.png')
-        plt.imshow(img)
-        plt.axis('off')
-        plt.show()
-
         # print(self.make_hist())
         self.get_price(self.lego_nums, self.input_mat_size)
 
@@ -284,3 +335,4 @@ class vectorStuff():
 if __name__ == "__main__":
     pic = vectorStuff()
     pic.runPixel()
+    # pic.get_lego_pix()
