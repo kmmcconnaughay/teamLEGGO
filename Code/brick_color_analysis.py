@@ -5,7 +5,7 @@ a dictionary, and print the dictionary.
 Author: Kerry McConnaughay
 
 """
-import cv2
+# import cv2
 import PIL.Image as Image
 import numpy as np
 import os
