@@ -260,8 +260,8 @@ class vectorStuff():
 
         """run through all the rows and columns and populate the empty matrix
            with the pixelated and lego-adjusted pixels."""
-        for col in range(0, numcols):
-            for row in range(0, numrows):
+        for col in range(0, numcols-1):
+            for row in range(0, numrows-1):
 
                 pixels = self.get_square(array, col, row, squaresize)
                 brick_index = self.brick_picker(pixels)
@@ -303,17 +303,16 @@ class vectorStuff():
             of 1x1 lego bricks is 7 cents each."""
         brick_cost = round(len(lego_nums)*.07)
         mat_cost = int(25)  # this should change after research
-        total_cost = brick_cost+mat_cost
-
-        print('The total number of bricks used is '+str(len(lego_nums)))
-        print('The total cost is '+str(total_cost)+' dollars')
+        self.total_cost = brick_cost+mat_cost
+        self.bricks_used = len(lego_nums)
+        return('The total number of bricks used is '+str(len(self.lego_nums))), ('The total cost is '+str(self.total_cost)+' dollars')
 
     def runPixel(self):
 
         # print('Please specify the size of your mat:')
 
-        name = "alex"
-        extension = ".jpg"
+        name = "teamLEGGO"
+        extension = ".png"
         filename = name+extension
         # org_image = self.load_img(filename)
         # plt.imshow(org_image)
@@ -321,12 +320,12 @@ class vectorStuff():
         # plt.show()
 
         # image_pix = self.lego_dat_brick(filename, int(self.input_mat_size))
-        image_pix = self.lego_dat_brick(filename, 50)
+        image_pix = self.lego_dat_brick(filename, self.input_mat_size)
         # print(image_pix)
         plt.imshow(image_pix)
         plt.axis('off')
         plt.savefig(name+"_pix"+extension, bbox_inches='tight', origin='lower')
-        plt.show()
+        #plt.show()
 
         # print(self.make_hist())
         self.get_price(self.lego_nums, self.input_mat_size)

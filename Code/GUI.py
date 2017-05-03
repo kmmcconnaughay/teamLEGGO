@@ -274,6 +274,8 @@ class SelectFile(App):
             self.drawLabelImage()
             self.drawImage2()
             self.drawBackButton()
+            #self.drawBricks()
+            self.drawCost()
         else:
             pngpls = PngPls()
             return pngpls.popup()
@@ -294,6 +296,19 @@ class SelectFile(App):
         self.wimg = Image(source = 'teamLEGGO_pix.png', size_hint=(.6, .6),
                 pos_hint= {'x':.2, 'y':.2})
         self.browser.add_widget(self.wimg)
+        bricksUsed, cost = pixelationProgram.get_price(pixelationProgram.lego_nums, pixelationProgram.input_mat_size)
+        self.browser.add_widget(Label(text= bricksUsed, size_hint=(.1, .1),
+                pos_hint= {'x':.5, 'y':0}))
+        self.browser.add_widget(Label(text= cost, size_hint=(.1, .1),
+                pos_hint= {'x':.5, 'y':.1}))
+
+    def drawBricks(self):
+        pixelationProgram = vectorStuff()
+
+    def drawCost(self):
+        pixelationProgram = vectorStuff()
+
+
     def drawBackButton(self):
         '''
         Adds back button to allow the user to return to the main page.
