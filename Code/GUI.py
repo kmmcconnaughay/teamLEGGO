@@ -40,7 +40,7 @@ import shutil
 from vector_analysis import vectorStuff
 import urllib.request
 
-input_mat_size = 100;
+input_mat_size = 48;
 class AppBody(FloatLayout):
 
     def __init__(self, **kwargs):
@@ -161,7 +161,6 @@ class AppBody(FloatLayout):
                 self.clear_widgets()
                 self.drawLabelImage()
                 self.drawImage2()
-                self.drawBackButton()
             else:
                 pngpls = PngPls()
                 return pngpls.popup()
@@ -187,14 +186,6 @@ class AppBody(FloatLayout):
                 pos_hint= {'x':.5, 'y':0}))
         self.add_widget(Label(text= cost, size_hint=(.1, .1),
                 pos_hint= {'x':.5, 'y':.1}))
-    def drawBackButton(self):
-        '''
-        Adds back button to allow the user to return to the main page.
-        '''
-        self.back = Button(text = 'Back', size_hint=(.1, .05),
-                pos_hint= {'x':.9, 'y':.0})
-        self.add_widget(self.back)
-        self.back.bind(on_press = self.call)
     def call(self, instance):
         '''
         Runs the Lego mosaic main interface again.
@@ -278,9 +269,6 @@ class SelectFile(App):
             self.browser.clear_widgets()
             self.drawLabelImage()
             self.drawImage2()
-            self.drawBackButton()
-            #self.drawBricks()
-            self.drawCost()
         else:
             pngpls = PngPls()
             return pngpls.popup()
@@ -306,22 +294,6 @@ class SelectFile(App):
                 pos_hint= {'x':.5, 'y':0}))
         self.browser.add_widget(Label(text= cost, size_hint=(.1, .1),
                 pos_hint= {'x':.5, 'y':.1}))
-
-    def drawBricks(self):
-        pixelationProgram = vectorStuff()
-
-    def drawCost(self):
-        pixelationProgram = vectorStuff()
-
-
-    def drawBackButton(self):
-        '''
-        Adds back button to allow the user to return to the main page.
-        '''
-        self.back = Button(text = 'Back', size_hint=(.1, .05),
-                pos_hint= {'x':.9, 'y':.0})
-        self.browser.add_widget(self.back)
-        self.back.bind(on_press = self.call)
     def call(self, instance):
         '''
         Runs the Lego mosaic main interface again.
