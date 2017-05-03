@@ -182,6 +182,11 @@ class AppBody(FloatLayout):
         self.wimg = Image(source = 'teamLEGGO_pix.png', size_hint=(.6, .6),
                 pos_hint= {'x':.2, 'y':.2})
         self.add_widget(self.wimg)
+        bricksUsed, cost = pixelationProgram.get_price(pixelationProgram.lego_nums, pixelationProgram.input_mat_size)
+        self.add_widget(Label(text= bricksUsed, size_hint=(.1, .1),
+                pos_hint= {'x':.5, 'y':0}))
+        self.add_widget(Label(text= cost, size_hint=(.1, .1),
+                pos_hint= {'x':.5, 'y':.1}))
     def drawBackButton(self):
         '''
         Adds back button to allow the user to return to the main page.
