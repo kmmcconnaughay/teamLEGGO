@@ -69,11 +69,11 @@ class AppBody(FloatLayout):
         'Your Files' with a label widget next to the button as instructions.
         '''
         self.add_widget(Label(text= '[b]Brick it![/b]', markup = True,
-                              size_hint=(.1, .1), pos_hint= {'x':.1, 'y':.88}, font_size='60sp'))
+                              size_hint=(.1, .1), pos_hint= {'x':.45, 'y':.83}, font_size='60sp'))
         self.add_widget(Label(text= '[b]Input Your Image:[/b]', markup = True,
-                              size_hint=(.1, .1), pos_hint= {'x':.24, 'y':.2}, font_size='20sp'))
+                              size_hint=(.1, .1), pos_hint= {'x':.24, 'y':.3}, font_size='20sp'))
         self.button = Button(text = 'Your Files', size_hint=(.5, .1),
-                pos_hint= {'x':.45, 'y':.2})
+                pos_hint= {'x':.45, 'y':.3})
         self.add_widget(self.button)
         self.button.bind(on_press = self.callback)
     def drawInputURL(self):
