@@ -315,7 +315,7 @@ class SelectFile(App):
         '''
         self.browser.add_widget(Label(text= '[b]Here is your image!:[/b]', markup = True,
                 size_hint=(.1, .1),
-                pos_hint= {'x':.05, 'y':.8}, font_size='20sp'))
+                pos_hint= {'x':.1, 'y':.8}, font_size='20sp'))
     def drawImage2(self):
         '''
         Displays the pixelated image.
@@ -328,11 +328,11 @@ class SelectFile(App):
         self.browser.add_widget(self.wimg)
         bricksUsed, cost = pixelationProgram.get_price(pixelationProgram.lego_nums, pixelationProgram.input_mat_size)
         self.browser.add_widget(Label(text= bricksUsed, size_hint=(.1, .1),
-                pos_hint= {'x':.5, 'y':0.5}))
+                pos_hint= {'x':.45, 'y':0.6}))
         self.browser.add_widget(Label(text= cost, size_hint=(.1, .1),
-                pos_hint= {'x':.5, 'y':.4}))
-        self.button1 = Button(text = 'LEGOs Needed', size_hint=(.5, .1),
-                pos_hint= {'x':.5, 'y':.3})
+                pos_hint= {'x':.45, 'y':.5}))
+        self.button1 = Button(text = 'LEGOs Needed', size_hint=(.2, .05),
+                pos_hint= {'x':.4, 'y':.2})
         self.browser.add_widget(self.button1)
         self.button1.bind(on_press = self.call)
     def call(self, instance):
