@@ -126,23 +126,23 @@ class AppBody(FloatLayout):
         changing global variable for mat size used for pixelation and opening
         the file browser.
         '''
-        if instance.text == '5"x5"':
+        if instance.text == '[b]5"x5"[/b]':
             global input_mat_size
             input_mat_size = 16
             print(input_mat_size)
-        if instance.text == '6"x6"':
+        if instance.text == '[b]6"x6"[/b]':
             global input_mat_size
             input_mat_size = 19
             print(input_mat_size)
-        if instance.text == '5"x10"':
+        if instance.text == '[b]5"x10"[/b]':
             global input_mat_size
             input_mat_size = 16
             print(input_mat_size)
-        if instance.text == '10"x10"':
+        if instance.text == '[b]10"x10"[/b]':
             global input_mat_size
             input_mat_size = 32
             print(input_mat_size)
-        if instance.text == '15"x15"':
+        if instance.text == '[b]15"x15"[/b]':
             global input_mat_size
             input_mat_size = 48
             print(input_mat_size)
