@@ -292,7 +292,7 @@ class vectorStuff():
         """makes a histogram of the legos used to make an image for pricing
            and inventory using in the GUI"""
         d = dict()
-        for c in self.legolist:
+        for c in self.lego_nums:
             d[c] = d.get(c, 0) + 1
 
         return d

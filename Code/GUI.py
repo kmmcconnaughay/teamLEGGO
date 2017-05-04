@@ -173,8 +173,9 @@ class AppBody(FloatLayout):
         '''
         Displays label for selected image.
         '''
-        self.add_widget(Label(text= 'Here is your image!:', size_hint=(.1, .1),
-                pos_hint= {'x':.15, 'y':.8}))
+        self.add_widget(Label(text= '[b]Here is your image!:[/b]', markup = True,
+                size_hint=(.1, .1),
+                pos_hint= {'x':.1, 'y':.9}, font_size='20sp'))
     def drawImage2(self):
         '''
         Displays the pixelated image.
@@ -183,20 +184,24 @@ class AppBody(FloatLayout):
         pixelationProgram.input_mat_size = input_mat_size
         pixelationProgram.runPixel()
         self.wimg = Image(source = 'teamLEGGO_pix.png', size_hint=(.6, .6),
-                pos_hint= {'x':.2, 'y':.2})
+                pos_hint= {'x':.2, 'y':.3})
         self.add_widget(self.wimg)
         bricksUsed, cost = pixelationProgram.get_price(pixelationProgram.lego_nums, pixelationProgram.input_mat_size)
         self.add_widget(Label(text= bricksUsed, size_hint=(.1, .1),
-                pos_hint= {'x':.5, 'y':0}))
+                pos_hint= {'x':.45, 'y':.1}))
         self.add_widget(Label(text= cost, size_hint=(.1, .1),
-                pos_hint= {'x':.5, 'y':.1}))
+                pos_hint= {'x':.45, 'y':.15}))
+        self.button1 = Button(text = 'LEGOs Needed', size_hint=(.2, .05),
+                pos_hint= {'x':.4, 'y':.05})
+        self.add_widget(self.button1)
+        self.button1.bind(on_press = self.call)
     def call(self, instance):
         '''
-        Runs the Lego mosaic main interface again.
+        Outputs LEGOs needed popup
         '''
-        if instance.text == 'Back':
-            self.clear_widgets()
-            Leggo_Mosiaac().run()
+        if instance.text == 'LEGOs Needed':
+            numlego = NumLego()
+            numlego.popup()
 
 
 class PngPls(Popup):
@@ -220,6 +225,33 @@ class PngPls(Popup):
                          size_hint=(.7, .5))
         mybutton.bind(on_press=pngpopup.dismiss)
         pngpopup.open()
+
+class NumLego(Popup):
+
+    def popup(self):
+        '''
+        Creates a popup to display the number of each Lego you will need
+        '''
+        content = BoxLayout(orientation='vertical')
+        pixelationProgram = vectorStuff()
+        pixelationProgram.input_mat_size = input_mat_size
+        pixelationProgram.runPixel()
+        d = pixelationProgram.make_hist()
+        i = .9
+        for key in d:
+            lenkey = len(key)
+            content.add_widget(Label(text= key.ljust(30) + str(d[key]), size_hint=(.1, .1),
+                    pos_hint= {'x':.5, 'y':i}))
+            i += (-0.1)
+        mybutton = Button(text="Ok!", size_hint=(1, .20), font_size=20)
+        content.add_widget(mybutton)
+
+        numpopup = Popup(content=content,
+                         title="You will need...",
+                         auto_dismiss=False,
+                         size_hint=(.7, .5))
+        mybutton.bind(on_press=numpopup.dismiss)
+        numpopup.open()
 
 
 class SelectFile(App):
@@ -281,8 +313,9 @@ class SelectFile(App):
         '''
         Displays label for selected image.
         '''
-        self.browser.add_widget(Label(text= 'Here is your image!:', size_hint=(.1, .1),
-                pos_hint= {'x':.15, 'y':.8}))
+        self.browser.add_widget(Label(text= '[b]Here is your image!:[/b]', markup = True,
+                size_hint=(.1, .1),
+                pos_hint= {'x':.05, 'y':.8}, font_size='20sp'))
     def drawImage2(self):
         '''
         Displays the pixelated image.
@@ -290,21 +323,25 @@ class SelectFile(App):
         pixelationProgram = vectorStuff()
         pixelationProgram.input_mat_size = input_mat_size
         pixelationProgram.runPixel()
-        self.wimg = Image(source = 'teamLEGGO_pix.png', size_hint=(.6, .6),
-                pos_hint= {'x':.2, 'y':.2})
+        self.wimg = Image(source = 'teamLEGGO_pix.png', size_hint=(1, 1.5),
+                pos_hint= {'x':.05, 'y':.01})
         self.browser.add_widget(self.wimg)
         bricksUsed, cost = pixelationProgram.get_price(pixelationProgram.lego_nums, pixelationProgram.input_mat_size)
         self.browser.add_widget(Label(text= bricksUsed, size_hint=(.1, .1),
-                pos_hint= {'x':.5, 'y':0}))
+                pos_hint= {'x':.5, 'y':0.5}))
         self.browser.add_widget(Label(text= cost, size_hint=(.1, .1),
-                pos_hint= {'x':.5, 'y':.1}))
+                pos_hint= {'x':.5, 'y':.4}))
+        self.button1 = Button(text = 'LEGOs Needed', size_hint=(.5, .1),
+                pos_hint= {'x':.5, 'y':.3})
+        self.browser.add_widget(self.button1)
+        self.button1.bind(on_press = self.call)
     def call(self, instance):
         '''
-        Runs the Lego mosaic main interface again.
+        Outputs LEGOs needed popup
         '''
-        if instance.text == 'Back':
-            self.browser.clear_widgets()
-            Leggo_Mosiaac().run()
+        if instance.text == 'LEGOs Needed':
+            numlego = NumLego()
+            numlego.popup()
 
 
 
