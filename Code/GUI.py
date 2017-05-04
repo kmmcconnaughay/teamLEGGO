@@ -345,11 +345,11 @@ class SelectFile(App):
 
 
 
-class Leggo_Mosiaac(App):
+class Leggo_Mosaic(App):
 
     def build(self):
         return AppBody()
 
 
 if __name__ == '__main__':
-    Leggo_Mosiaac().run()
+    Leggo_Mosaic().run()
