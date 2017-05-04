@@ -68,10 +68,12 @@ class AppBody(FloatLayout):
         Adds button widget and binds it to callback with its instance set to
         'Your Files' with a label widget next to the button as instructions.
         '''
-        self.add_widget(Label(text= 'Input Your Image:', size_hint=(.1, .1),
-                pos_hint= {'x':.15, 'y':.2}))
+        self.add_widget(Label(text= '[b]Brick it![/b]', markup = True,
+                              size_hint=(.1, .1), pos_hint= {'x':.1, 'y':.88}, font_size='60sp'))
+        self.add_widget(Label(text= '[b]Input Your Image:[/b]', markup = True,
+                              size_hint=(.1, .1), pos_hint= {'x':.24, 'y':.2}, font_size='20sp'))
         self.button = Button(text = 'Your Files', size_hint=(.5, .1),
-                pos_hint= {'x':.35, 'y':.2})
+                pos_hint= {'x':.45, 'y':.2})
         self.add_widget(self.button)
         self.button.bind(on_press = self.callback)
     def drawInputURL(self):
@@ -80,10 +82,12 @@ class AppBody(FloatLayout):
         to on_focus such that it calls on_focus when the box is either clicked on
         or clicked off of.
         '''
-        self.add_widget(Label(text='Or Input URL to an image', size_hint=(.1, .1),
-                pos_hint= {'x':.15, 'y':.45}))
-        self.urlIn = TextInput(multiline=True, size_hint=(.5, .1),
-                pos_hint= {'x':.35, 'y':.45})
+        self.add_widget(Label(text='[b]Or Input URL to an image:[/b]', markup = True,
+                              size_hint=(.1, .1),pos_hint= {'x':.2, 'y':.475}, font_size='20sp'))
+        self.add_widget(Label(text='(Paste URL and click outside of textbox)', size_hint=(.1, .1),
+                pos_hint= {'x':.18, 'y':.425}))
+        self.urlIn = TextInput(multiline=False, size_hint=(.5, .1),
+                pos_hint= {'x':.45, 'y':.45})
         self.urlIn.bind(focus=self.on_focus)
         self.add_widget(self.urlIn)
     def drawSize(self):
@@ -91,22 +95,22 @@ class AppBody(FloatLayout):
         Buttons for each size of LEGO mat with instances as the sizes of the buttons
         bound to callbacks.
         '''
-        self.add_widget(Label(text='Baseplate Size:', size_hint=(.1, .1),
-                pos_hint= {'x':.45, 'y':.775}))
-        self.drop1 = Button(text = '5"x5"', size_hint=(.2, .1),
-                pos_hint= {'x':0, 'y':.7})
+        self.add_widget(Label(text='[b]Baseplate Size:[/b]', markup = True,
+                size_hint=(.1, .1), pos_hint= {'x':.45, 'y':.7}, font_size='20sp'))
+        self.drop1 = Button(text = '[b]5"x5"[/b]', markup = True, size_hint=(.15, .1),
+                pos_hint= {'x':0.025, 'y':.61})
         self.add_widget(self.drop1)
-        self.drop2 = Button(text = '6"x6"', size_hint=(.2, .1),
-                pos_hint= {'x':.2, 'y':.7})
+        self.drop2 = Button(text = '[b]6"x6"[/b]', markup = True, size_hint=(.15, .1),
+                pos_hint= {'x':.225, 'y':.61})
         self.add_widget(self.drop2)
-        self.drop3 = Button(text = '5"x10"', size_hint=(.2, .1),
-                pos_hint= {'x':.4, 'y':.7})
+        self.drop3 = Button(text = '[b]5"x10"[/b]', markup = True, size_hint=(.15, .1),
+                pos_hint= {'x':.425, 'y':.61})
         self.add_widget(self.drop3)
-        self.drop4 = Button(text = '10"x10"', size_hint=(.2, .1),
-                pos_hint= {'x':.6, 'y':.7})
+        self.drop4 = Button(text = '[b]10"x10"[/b]', markup = True, size_hint=(.15, .1),
+                pos_hint= {'x':.625, 'y':.61})
         self.add_widget(self.drop4)
-        self.drop5 = Button(text = '15"x15"', size_hint=(.2, .1),
-                pos_hint= {'x':.8, 'y':.7})
+        self.drop5 = Button(text = '[b]15"x15"[/b]', markup = True, size_hint=(.15, .1),
+                pos_hint= {'x':.825, 'y':.61})
         self.add_widget(self.drop5)
 
         self.drop1.bind(on_press = self.callback)
